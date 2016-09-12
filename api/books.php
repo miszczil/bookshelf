@@ -50,6 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $editedBook->setDescription($desc);
     
     $editedBook->update($conn, $id);
+    header('Location: ../index.php');
+
+    
     
 } elseif ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     parse_str(file_get_contents("php://input"), $del_vars);

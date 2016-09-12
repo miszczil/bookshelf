@@ -30,12 +30,21 @@ class Book implements JsonSerializable {
 
     public function update(mysqli $connection, $id) {
         
+        $newTitle = $this->getTitle();
+        $newAuthor = $this->getAuthor();
+        $newDesc = $this->getDescription();
+        
         $result = $connection->query("UPDATE Book
-                                    SET title = '$this->getTitle',
-                                    author =  '$this->getAuthor',
-                                    description =  '$this->getDescription'
+                                    SET title = '$newTitle',
+                                    author =  '$newAuthor',
+                                    description =  '$newDesc'
                                     WHERE  id = $id;
                                     ");
+        if($result) {
+            return true;
+        } else {
+            return false;
+        }
         
     }
 
